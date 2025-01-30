@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node backend/index.js",
+    "live": "nodemon backend/index.js",
     "test": "test"
   },
   "type": "module",
