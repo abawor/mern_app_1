@@ -1,0 +1,16 @@
+{
+  "name": "mern_app_1",
+  "version": "1.0.0",
+  "description": "learning to develop a mern app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node backend/index.js",
+    "test": "test"
+  },
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
