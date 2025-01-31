@@ -4,9 +4,9 @@
   "description": "learning to develop a mern app",
   "main": "index.js",
   "scripts": {
+    "dev": "concurrently \"nodemon backend/index.js\" \"vite frontend\"",
     "start:backend": "nodemon backend/index.js",
-    "live:backend": "nodemon backend/index.js",
-    "live:frontend": "vite frontend",
+    "start:frontend": "vite frontend",
     "test": "test"
   },
   "type": "module",
@@ -14,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.2",
     "express": "^4.21.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

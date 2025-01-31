@@ -1,9 +1,11 @@
-
+import Form from "./components/form";
+import LogsDisplay from "./components/logsDisplay";
 
 function App() {
     return (
         <div>
-            <h1>Learning MERN App Dev</h1>
+            <Form />
+            <LogsDisplay />
         </div>
     );
 }
