@@ -5,17 +5,20 @@
   "main": "index.js",
   "scripts": {
     "start:backend": "nodemon backend/index.js",
-    "start:frontend": "nodemon react-scripts start",
     "live:backend": "nodemon backend/index.js",
-    "live:frontend": "nodemon react-scripts start",
+    "live:frontend": "vite frontend",
     "test": "test"
   },
   "type": "module",
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
     "express": "^4.21.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "vite": "^6.0.11"
   }
 }
