@@ -11,6 +11,7 @@ function Form() {
             age: formData.get("age")
         }
         console.log(logData)
+        form.reset()
     }
 
     return (
