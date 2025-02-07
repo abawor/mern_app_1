@@ -8,7 +8,7 @@ function Form() {
         const formData = new FormData(form);
         const logData = {
             name: formData.get("name"),
-            age: formData.get("age")
+            age: formData.get("age").toString()
         }
         console.log(logData)
         form.reset()

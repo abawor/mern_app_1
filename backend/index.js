@@ -1,39 +1,46 @@
 import express from 'express'
 import path from 'path'
-import { MongoClient } from 'mongodb'
+import mongoose from 'mongoose'
+import cors from 'cors'
 import dotenv from 'dotenv'
 
 dotenv.config()
 
-const db = new MongoClient(process.env.MONGO_URI)
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('MongoDB Connected')) 
+  .catch(err => console.log(err)); 
+;
+
+const Schema = mongoose.Schema;
+const logSchema = new Schema({
+  name: String,
+  age: String,
+});
+
+const logsCollection = mongoose.model("nameAgeLogs", logSchema,"nameAgeLogs");
 
 const __dirname = path.resolve();
 
 const app = express()
 const port = 3000
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, "frontend", "index.html"))
-})
+app.use(cors())
+app.use(express.json())
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
 
-async function connectToDB() {
+app.get('/logs', async (req, res) => {
   try {
-    await db.connect();
-    /*
-    const database = db.db('logs');
-    const logs = database.collection('nameAgeLogs');
-    const query = { name: 'Axiu' };
-    const log = await logs.findOne(query);
-    console.log(log);
-    */
-    console.log("Connected to MongoDB");
-  } catch (err) {
-    console.log(err);
+    const logs = await logsCollection.find();
+    res.json(logs);
+  } catch (error) {
+    console.error("Error fetching logs:", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
-}
+});
 
-connectToDB();
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend", "index.html"))
+})
