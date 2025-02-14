@@ -41,6 +41,17 @@ app.get('/logs', async (req, res) => {
   }
 });
 
+app.post('/log', async (req, res) => {
+  try {
+    const log = new logsCollection(req.body);
+    const result = await log.save();
+    res.json(result);
+  } catch (error) {
+    console.error("Error saving log:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+})
+
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, "frontend", "index.html"))
 })

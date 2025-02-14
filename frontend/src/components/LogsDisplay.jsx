@@ -1,4 +1,3 @@
-/*import { logs } from "../../../backend/dummyData/data";*/
 import { useEffect, useState } from "react";
 
 function LogsDisplay() {

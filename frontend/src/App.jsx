@@ -1,5 +1,5 @@
-import Form from "./components/form";
-import LogsDisplay from "./components/logsDisplay";
+import Form from "./components/Form";
+import LogsDisplay from "./components/LogsDisplay";
 
 function App() {
     return (

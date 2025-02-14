@@ -1,7 +1,6 @@
-
 function Form() {
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const form = e.target;
@@ -11,7 +10,24 @@ function Form() {
             age: formData.get("age").toString()
         }
         console.log(logData)
-        form.reset()
+
+        try {
+            const response = await fetch("http://localhost:3000/log", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(logData)
+            })
+
+            if (response.ok) {
+                window.location.reload()
+            } else {
+                console.error("Error posting log")
+            }
+        } catch (error) {
+            console.error("Error posting log:", error)
+        }
     }
 
     return (
