@@ -52,6 +52,16 @@ app.post('/log', async (req, res) => {
   }
 })
 
+app.delete('/log', async (req, res) => {
+  try {
+    const result = await logsCollection.deleteOne(req.body);
+    res.json(result);
+  } catch (error) {
+    console.error("Error deleting log:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+})
+
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, "frontend", "index.html"))
 })
