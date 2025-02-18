@@ -19,7 +19,6 @@ function Form() {
                 },
                 body: JSON.stringify(logData)
             })
-
             if (response.ok) {
                 window.location.reload()
             } else {

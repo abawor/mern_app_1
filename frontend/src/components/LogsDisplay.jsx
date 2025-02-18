@@ -7,6 +7,10 @@ function LogsDisplay() {
 
     const handleDeleteLog = async (logId) => {
 
+        const confirmation = confirm("Are you sure you want to delete this log? There is no going back")
+
+        if (!confirmation) return
+
         logId = {
             _id: logId
         }
@@ -18,8 +22,7 @@ function LogsDisplay() {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(logId)
-             })
-
+            })
             if (response.ok) {
                 window.location.reload()
             } else {
