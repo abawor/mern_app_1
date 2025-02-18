@@ -33,9 +33,30 @@ function LogsDisplay() {
         }
     }
 
-    const handleEditLog = async (logId) => {
+    const handleEditLog = async (logId, name, age) => {
 
-        console.log("editing log: " + logId)
+        const log = {
+            _id: logId,
+            name: name,
+            age: age
+        }
+
+        try {
+            const response = await fetch("http://localhost:3000/log", {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(log)
+            })
+            if (response.ok) {
+                window.location.reload()
+            } else {
+                console.error("Error updating log")
+            }
+        } catch (error) {
+            console.error("Error updating log:", error)
+        }
     }
 
     useEffect(() => {
@@ -56,7 +77,7 @@ function LogsDisplay() {
                         <CiEdit
                             size={20}
                             className="cursor-pointer mr-2"
-                            onClick={() => handleEditLog(log._id)}
+                            onClick={() => handleEditLog(log._id, "updated", "99")}
                         />
                         <MdDeleteForever 
                             size={19}
