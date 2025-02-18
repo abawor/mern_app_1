@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { MdDeleteForever } from "react-icons/md";
-
+import { CiEdit } from "react-icons/ci";
 
 function LogsDisplay() {
     const [logs, setLogs] = useState([]);
@@ -33,6 +33,11 @@ function LogsDisplay() {
         }
     }
 
+    const handleEditLog = async (logId) => {
+
+        console.log("editing log: " + logId)
+    }
+
     useEffect(() => {
         fetch("http://localhost:3000/logs")
         .then(res => res.json())
@@ -47,11 +52,18 @@ function LogsDisplay() {
                 <div key={log._id} className="mt-5 border-l-2 w-30 p-1">
                     <div className="font-medium">{log.name.charAt(0).toUpperCase() + log.name.slice(1)}</div>
                     <div>{log.age}</div>
-                    <MdDeleteForever 
-                        size={19}
-                        className="cursor-pointer"
-                        onClick={() => handleDeleteLog(log._id)}
-                    />
+                    <div className="flex flex-row mt-2">
+                        <CiEdit
+                            size={20}
+                            className="cursor-pointer mr-2"
+                            onClick={() => handleEditLog(log._id)}
+                        />
+                        <MdDeleteForever 
+                            size={19}
+                            className="cursor-pointer"
+                            onClick={() => handleDeleteLog(log._id)}
+                        />
+                    </div>
                 </div>
             ))}
         </div>
